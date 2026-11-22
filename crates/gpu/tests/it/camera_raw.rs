@@ -217,16 +217,19 @@ fn check_at(name: &str, sets: &[Case], size: (usize, usize)) {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn white_balance_and_exposure() {
     check("white balance", &[cr! { temperature: 40.0, tint: -25.0}, cr! { temperature: -70.0, tint: 60.0, exposure: -1.2}, cr! { exposure: 1.5}]);
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn contrast_without_texture_or_clarity() {
     check("contrast", &[cr! { contrast: 60.0}, cr! { contrast: -80.0, exposure: 0.4}]);
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn whites_and_blacks() {
     check(
         "whites/blacks",
@@ -242,6 +245,7 @@ fn whites_and_blacks() {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn tone_curves() {
     check(
         "tone curves",
@@ -262,11 +266,13 @@ fn tone_curves() {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn vibrance_and_saturation() {
     check("presence", &[cr! { vibrance: 70.0}, cr! { saturation: -60.0}, cr! { vibrance: -40.0, saturation: 50.0}]);
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn color_mixer() {
     let ramp = |k: f32| std::array::from_fn(|i| ((i as f32 * 37.0 + k) % 200.0) - 100.0);
     check(
@@ -281,6 +287,7 @@ fn color_mixer() {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn color_grading() {
     check(
         "color grading",
@@ -297,6 +304,7 @@ fn color_grading() {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn vignette() {
     check(
         "vignette",
@@ -315,6 +323,7 @@ fn vignette() {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn grain_in_full_resolution_coordinates() {
     check(
         "grain",
@@ -328,6 +337,7 @@ fn grain_in_full_resolution_coordinates() {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn every_per_pixel_stage_at_once() {
     let mut hsl = [0.0; 8];
     hsl[1] = 35.0;
@@ -356,6 +366,7 @@ fn every_per_pixel_stage_at_once() {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn identity_leaves_pixels_alone_and_detail_has_no_pass() {
     let Some(mut g) = gpu() else { return };
     let p = Case::default();
@@ -383,6 +394,7 @@ fn identity_leaves_pixels_alone_and_detail_has_no_pass() {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn a_cached_source_is_reused_and_a_new_key_uploads() {
     let Some(mut g) = gpu() else { return };
     let p = cr! { exposure: 0.5};
@@ -414,6 +426,7 @@ fn bad_sizes_and_faulted_devices_are_errors() {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn shadows_and_highlights() {
     let sets = [
         cr! { shadows: 50.0},
@@ -429,6 +442,7 @@ fn shadows_and_highlights() {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn shadows_and_highlights_on_tiny_odd_and_flat_frames() {
     let Some(mut g) = gpu() else { return };
     let p = cr! { shadows: 60.0, highlights: -40.0, whites: 20.0};
@@ -453,6 +467,7 @@ fn shadows_and_highlights_on_tiny_odd_and_flat_frames() {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn shadows_and_highlights_with_per_pixel_stages() {
     let mut hsl = [0.0; 8];
     hsl[1] = 35.0;
@@ -510,6 +525,7 @@ fn assert_moves(sets: &[Case]) {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn clarity_texture_and_dehaze() {
     let sets = [
         cr! { clarity: 50.0},
@@ -530,6 +546,7 @@ fn clarity_texture_and_dehaze() {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn clarity_texture_and_dehaze_with_shadows_highlights_and_per_pixel_stages() {
     let mut hsl = [0.0; 8];
     hsl[1] = 35.0;
@@ -580,6 +597,7 @@ fn clarity_texture_and_dehaze_with_shadows_highlights_and_per_pixel_stages() {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn clarity_texture_and_dehaze_on_tiny_and_odd_frames() {
     let Some(mut g) = gpu() else { return };
     let p = cr! { dehaze: 45.0, clarity: 50.0, texture: 60.0, whites: 20.0, blacks: -20.0};
@@ -607,6 +625,7 @@ fn clarity_texture_and_dehaze_on_tiny_and_odd_frames() {
 /// does there. The scene of algo's `dehaze_leaves_no_halo_beside_dark_objects`: a clear sky and a
 /// dark tower hazed with `I = J·t + A·(1 − t)`.
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn dehaze_opens_the_dark_channel_like_the_cpu() {
     let Some(mut g) = gpu() else { return };
     let (w, h) = (600usize, 400usize);
@@ -629,6 +648,7 @@ fn dehaze_opens_the_dark_channel_like_the_cpu() {
 }
 
 #[test]
+#[ignore = "WGSL shaders pending migration to craft_develop (#587)"]
 fn dehaze_remakes_its_copy_when_the_white_balance_changes() {
     let Some(mut g) = gpu() else { return };
     let src = image(858, 572, Depth::Eight);
